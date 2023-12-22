@@ -35,20 +35,31 @@ tabLabels.forEach(function(label, index){
   label.addEventListener("click", activateTab);
 });
 
-function showFormAfterDelay(tabId) {
-  //const runButton = document.querySelector(tabId + ' .run-btn');
-  const textContent = document.querySelector(tabId + ' p');
-  const myForm = document.querySelector(tabId + ' .hidden-form');
-  
-  // Wait for 4 seconds before hiding the text content
-  setTimeout(() => {
-    textContent.style.display = 'none';
+function handleButtonClick(buttonId) {
+  const button = document.getElementById(buttonId);
+  const textMessageId = buttonId.replace("myButton", "textMessage");
+  const formId = buttonId.replace("myButton", "myForm");
 
-    // Show the form after an additional 1 second
+  const textMessage = document.getElementById(textMessageId);
+  const form = document.getElementById(formId);
+
+  button.addEventListener("click", () => {
+    textMessage.textContent = "Please wait for a moment...";
+    textMessage.style.display = "block";
+
     setTimeout(() => {
-      myForm.style.display = 'block';
-    }, 1000);
-  }, 4000);
+      textMessage.style.display = "none";
+      form.style.display = "block";
+    }, 4000);
+  });
 }
-  
+
+// Initialize functionality for each button
+handleButtonClick("myButton1");
+handleButtonClick("myButton2");
+handleButtonClick("myButton3");
+
+
+
+
   
